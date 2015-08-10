@@ -9,15 +9,20 @@ body { height: 100%; margin: 0; padding: 0 }
 #map-canvas { height: 100% }
 </style>
 <script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTha7xxiha3w4O7RpA0aJpA0CrKsmkocw" type="text/javascript"></script>
+<!-- bxSlider Javascript file -->
+<script src="jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="jquery.bxslider.css" rel="stylesheet" />
 <script type="text/javascript">
 function onSuccess(position) {
-var element = document.getElementById('geolocation');
+/*var element = document.getElementById('geolocation');
 element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
 'Longitude: ' + position.coords.longitude + '<br />' +
-'<hr />' + element.innerHTML;
-var lat=position.coords.latitude;
-var lang=position.coords.longitude;
+'<hr />' + element.innerHTML;*/
+var lat=23.664;//position.coords.latitude;
+var lang=34.467;//position.coords.longitude;
 var myLatlng = new google.maps.LatLng(lat,lang);
 var mapOptions = {zoom: 4,center: myLatlng}
 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -27,12 +32,52 @@ function onError(error) {
 alert('code: ' + error.code + '\n' +
 'message: ' + error.message + '\n');
 }
-var watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 3000 });
+//var watchID = navigator.geolocation.watchPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: true});
 google.maps.event.addDomListener(window, 'load', onSuccess);
 </script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  //$('.bxslider').bxSlider();
+  
+  	var slider = $('.bxslider').bxSlider({
+	
+	    minSlides: 3,
+  maxSlides: 3,
+  slideWidth: 700,
+  slideMargin: 10
+	});
+	
+
+
+	$('#slider-next').click(function(){
+	  slider.goToNextSlide();
+	  return false;
+	});
+
+	$('#slider-count').click(function(){
+	  var count = slider.getSlideCount();
+	  alert('Slide count: ' + count);
+	  return false;
+	});
+  
+});
+
+
+</script>
+
 </head>
 <body>
-<div id="geolocation"></div>
-<div id="map-canvas"></div>
+<!--<div id="geolocation" style="display:block;height:40%"></div>-->
+<div id="map-canvas" style="display:block;height:40%"></div>
+
+<ul class="bxslider" style="display:block;margin-top:3px;">
+  <li><img src="images/pic1.jpg" /></li>
+  <li><img src="images/pic2.jpg" /></li>
+    <li><img src="images/pic3.jpg" /></li>
+  <li><img src="images/pic4.jpg" /></li>
+   <li><img src="images/pic5.jpg" /></li>
+</ul>
+
 </body>
 </html>
