@@ -18,7 +18,7 @@ body { height: 100%; margin: 0; padding: 0 }
 <style type="text/css">
 
 .bx-viewport{
-	/*height:16em !important;*/
+	height:16em !important;
 }
 .bx-wrapper{
 	width: 700px !important ; 
@@ -40,10 +40,7 @@ body { height: 100%; margin: 0; padding: 0 }
 img{
 	margin-left:auto;
 	margin-right:auto;
-	width:200px;
-	height:120px;
 }
-
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -51,12 +48,14 @@ $(document).ready(function(){
   
   	slider = $('.bxslider').bxSlider({
 	pager:false,
-	    minSlides: 3,
-  maxSlides: 3,
-  slideWidth: 200,
+	    minSlides: 1,
+  maxSlides: 1,
+  slideWidth: 700,
   slideMargin: 4
 	});
 	
+
+
 	$('#slider-next').click(function(){
 	  slider.goToNextSlide();
 	  return false;
