@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
   //$('.bxslider').bxSlider();
   
   	slider = $('.bxslider').bxSlider({
@@ -20,7 +20,10 @@ $(document).ready(function(){
 	  return false;
 	});
   
-});
+}); */
+
+
+
 
 ///////////////////////////////////////////////////////////////
 
@@ -43,7 +46,7 @@ CustomMarker.prototype.draw = function() {
 		div = this.div = document.createElement('div');
 		
 		div.className = 'marker';
-		div.id = "imageNo";
+		div.id = self.args.image;
 		div.style.position = 'absolute';
 		div.style.cursor = 'pointer';
 		div.style.width = '40px';
@@ -53,7 +56,7 @@ CustomMarker.prototype.draw = function() {
 		//div.style.background = 'blue';
 		//div.style.backgroundImage= "url('las_vegas.jpg')";
 		var elem = document.createElement("img");
-		elem.src = self.args.image;
+		elem.src = "images/"+self.args.image;
 		elem.setAttribute("height", "40px !important");
 		elem.setAttribute("width", "40px !important");
 		div.appendChild(elem);
@@ -63,8 +66,28 @@ CustomMarker.prototype.draw = function() {
 			div.dataset.marker_id = self.args.marker_id;
 		}
 		
+		
+
+		
+		
 		google.maps.event.addDomListener(div, "click", function(event) {
-			alert('You clicked on a custom marker!' + div.id);			
+			//alert('You clicked on a custom marker!' + div.id);	
+			
+			/*find image to load*/
+			
+			
+			
+			
+			
+			/*find image END*/
+			jQuery('#element_to_pop_up').bPopup({
+                    appendTo: 'form'
+                    , zIndex: 2
+                    , modalClose: false,
+					content:'image',
+					contentContainer:'.content',
+					loadUrl:'images/'+div.id
+                });			
 			google.maps.event.trigger(self, "click");
 		});
 		
@@ -121,23 +144,23 @@ function onSuccess(position) {
 
 	var bounds = new google.maps.LatLngBounds();
 
-	var marker1 = new CustomMarker(new google.maps.LatLng(41.8369, 87.6847), map,{image: 'images/Chicago.jpg'});
+	var marker1 = new CustomMarker(new google.maps.LatLng(41.8369, 87.6847), map,{image: 'Chicago.jpg'});
 	//var marker1 = new google.maps.Marker({position: new google.maps.LatLng(41.8369, 87.6847),map: map});
 	bounds.extend(new google.maps.LatLng(41.8369, 87.6847));
 
-	var marker2 = new CustomMarker(new google.maps.LatLng(36.1215,115.1739), map,{image: 'images/las_vegas.jpg'});
+	var marker2 = new CustomMarker(new google.maps.LatLng(36.1215,115.1739), map,{image: 'las_vegas.jpg'});
 	//var marker2 = new google.maps.Marker({position: new google.maps.LatLng(36.1215,115.1739),map: map});
 	bounds.extend(new google.maps.LatLng(36.1215,115.1739));
 
-	var marker3 = new CustomMarker(new google.maps.LatLng(25.7753, 80.2089), map,{image: 'images/Miami.jpg'});
+	var marker3 = new CustomMarker(new google.maps.LatLng(25.7753, 80.2089), map,{image: 'Miami.jpg'});
 	//var marker3 = new google.maps.Marker({position: new google.maps.LatLng(25.7753, 80.2089),map: map});
 	bounds.extend(new google.maps.LatLng(25.7753, 80.2089));
 
-	var marker4 = new CustomMarker(new google.maps.LatLng(40.7127, 74.0059), map,{image: 'images/NewYork.jpg'});
+	var marker4 = new CustomMarker(new google.maps.LatLng(40.7127, 74.0059), map,{image: 'NewYork.jpg'});
 	//var marker4 = new google.maps.Marker({position: new google.maps.LatLng(40.7127, 74.0059),map: map});
 	bounds.extend(new google.maps.LatLng(40.7127, 74.0059));
 
-	var marker5 = new CustomMarker(new google.maps.LatLng(37.7833, 122.4167), map,{image: 'images/San_Francisco.jpg'});
+	var marker5 = new CustomMarker(new google.maps.LatLng(37.7833, 122.4167), map,{image: 'San_Francisco.jpg'});
  	//var marker5 = new google.maps.Marker({position: new google.maps.LatLng(37.7833, 122.4167),map: map});
 	bounds.extend(new google.maps.LatLng(37.7833, 122.4167));
 
