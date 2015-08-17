@@ -1,85 +1,110 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<title>Moving Boxes</title>
-
-	<!-- Required CSS -->
-	<link href="css/movingboxes.css" rel="stylesheet">
-	<!--[if lt IE 9]>
-	<link href="css/movingboxes-ie.css" rel="stylesheet" media="screen">
-	<![endif]-->
-
-	<!-- Required script -->
-	<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
-	<script src="js/jquery.movingboxes.js"></script>
-
-	<script src="demo/demo.js"></script>
-	<style>
-		/* Overall & panel width defined using css in MovingBoxes version 2.2.2+ */
-		#slider-one { width: 300px; }
-		#slider-one > li { width: 150px; }
-
-		#slider-two { width: 500px; }
-		#slider-two > div { width: 360px; }
-		
-		a.mb-scrollButtons {
-			display: none !important;
-		}
-		
-		.wrapper{
-			width:100% !important;
-		}
-		
-		.movingBoxes mb-wrapper{
-			width:50% !important;
-		}
+<!DOCTYPE html>
+<html>
+    <head>
+	<style type="text/css">
+	html { height: 100% }
+	body { height: 100%; margin: 0; padding: 0 }
+	#map-canvas { height: 100% }
 	</style>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Tinder for Travel</title>
+                <link rel="stylesheet" type="text/css" href="css/vTiwari.css">
+				<script type="text/javascript" src="cordova.js"></script>
+				<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTha7xxiha3w4O7RpA0aJpA0CrKsmkocw" type="text/javascript"></script>
+				<!-- bxSlider Javascript file -->
+				<script src="jquery.bxslider.min.js"></script>
+				<script src="js/places.js"></script>
+				<!-- bxSlider CSS file -->
+				<link href="jquery.bxslider.css" rel="stylesheet" />
+				
+				<style type="text/css">
 
-</head>
+				.bx-viewport{
+					/*height:16em !important;*/
+				}
+				.bx-wrapper{
+					position: absolute !important;
+					margin: 0px auto !important;
+					left:0;
+					right:0;
+					bottom:13%;
+				}
+				.bxslider{
+					margin:0;
+				}
+				.bx-wrapper .bx-viewport{
+					box-shadow:0;
+					border:0;
+					left:0;
+				}
+				img{
+					margin-left:auto;
+					margin-right:auto;
+					width:200px;
+					height:120px;
+				}
 
-<body>
+				</style>
+				<script>
+				
+				
+				</script>
+    </head>
+    <body>
+        <div class="wrap">
+            <div id="sliderContainer">
+                <ul>
+                    <li class="pane1 lastItem">
+                        <div class="img"></div>
+                        <div>Miami</div>
+                        <div class="like"></div>
+                        <div class="dislike"></div>
+                    </li>
+                    <li class="pane2">
+                        <div class="img"></div>
+                        <div>San Francisco</div>
+                        <div class="like"></div>
+                        <div class="dislike"></div>
+                    </li>
+                    <li class="pane3">
+                        <div class="img"></div>
+                        <div>Chicago</div>
+                        <div class="like"></div>
+                        <div class="dislike"></div>
+                    </li>
+                    <li class="pane4">
+                        <div class="img"></div>
+                        <div>New York</div>
+                        <div class="like"></div>
+                        <div class="dislike"></div>
+                    </li>
+                    <li class="pane5">
+                        <div class="img"></div>
+                        <div>Las Vegas</div>
+                        <div class="like"></div>
+                        <div class="dislike"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+		<!--<div id="geolocation" style="display:block;height:40%"></div>-->
+		<div id="map-canvas" style="display:block;"></div>
 
-	<div class="wrapper">
-		
-		<!-- Slider #2 (images of slider #1 reversed) -->
-		<div id="slider-two">
+		<ul class="bxslider" style="display:block;margin-bottom:0.1%;">
+		  <li><img src="images/Chicago.jpg" /></li>
+		  <li><img src="images/las_vegas.jpg" /></li>
+			<li><img src="images/Miami.jpg" /></li>
+		  <li><img src="images/NewYork.jpg" /></li>
+		   <li><img src="images/San_Francisco.jpg" /></li>
+		</ul>
 
-			<div>
-				<img src="demo/5.jpg" alt="picture">
-				<h2>News Heading - <span>Lisa</span></h2>
-				<p>Add a short exerpt here... </p>
-			</div>
-
-			<div>
-				<img src="demo/4.jpg" alt="picture">
-				<h2>News Heading - <span>Monica</span></h2>
-				<p>Add a short exerpt here...</p>
-			</div>
-
-			<div>
-				<img src="demo/3.jpg" alt="picture">
-				<h2>News Heading - <span>Lin</span></h2>
-				<p>Add a short exerpt here... </p>
-			</div>
-
-			<div>
-				<img src="demo/2.jpg" alt="picture">
-				<h2>News Heading - <span>Shiela</span></h2>
-				<p>Add a short exerpt here... </p>
-			</div>
-
-			<div>
-				<img src="demo/1.jpg" alt="picture">
-				<h2>News Heading - <span>Joanne</span></h2>
-				<p>Add a short exerpt here... </p>
-			</div>
-
-		</div>
-
-	</div><!-- end wrapper -->
-
-</body>
-
+		<!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
+        <script type="text/javascript" src="js/jquery.transform2d.js"></script>
+        <script type="text/javascript" src="js/jquery.vTiwari.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
 </html>

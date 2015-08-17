@@ -1,14 +1,21 @@
 
+
 $("#sliderContainer").vTiwari({
 	// dislike callback
     onDislike: function (item) {
-	    // Perform some logic Gaurav, Gaurav and Ayush for you :P
-       
+	    // Perform some logic
+       var i=0;
+	   if(item.hasClass("lastItem")){
+			pageNavigation();
+	   }
     },
 	// like callback
     onLike: function (item) {
-	    // Perform some logic Gaurav, Gaurav and Ayush for you :P
-        
+	    // Perform some logic
+        var i=0;
+		if(item.hasClass("lastItem")){
+			pageNavigation();
+		}
     },
 	animationRevertSpeed: 200,
 	animationSpeed: 400,
@@ -17,3 +24,7 @@ $("#sliderContainer").vTiwari({
 	dislikeSelector: '.dislike'
 });
 
+function pageNavigation(){
+	
+	
+}
