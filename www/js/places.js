@@ -22,6 +22,80 @@ $(document).ready(function(){
   
 });
 
+///////////////////////////////////////////////////////////////
+
+function CustomMarker(latlng, map, args) {
+	this.latlng = latlng;	
+	this.args = args;	
+	this.setMap(map);	
+}
+
+CustomMarker.prototype = new google.maps.OverlayView();
+
+CustomMarker.prototype.draw = function() {
+	
+	var self = this;
+	
+	var div = this.div;
+	
+	if (!div) {
+	
+		div = this.div = document.createElement('div');
+		
+		div.className = 'marker';
+		div.id = "imageNo";
+		div.style.position = 'absolute';
+		div.style.cursor = 'pointer';
+		div.style.width = '40px';
+		div.style.height = '40px';
+		div.style.padding = '3px';
+		div.style.backgroundColor = 'white';
+		//div.style.background = 'blue';
+		//div.style.backgroundImage= "url('las_vegas.jpg')";
+		var elem = document.createElement("img");
+		elem.src = self.args.image;
+		elem.setAttribute("height", "40px !important");
+		elem.setAttribute("width", "40px !important");
+		div.appendChild(elem);
+		
+		
+		if (typeof(self.args.marker_id) !== 'undefined') {
+			div.dataset.marker_id = self.args.marker_id;
+		}
+		
+		google.maps.event.addDomListener(div, "click", function(event) {
+			alert('You clicked on a custom marker!' + div.id);			
+			google.maps.event.trigger(self, "click");
+		});
+		
+		var panes = this.getPanes();
+		panes.overlayImage.appendChild(div);
+	}
+	
+	var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
+	
+	if (point) {
+		div.style.left = (point.x - 10) + 'px';
+		div.style.top = (point.y - 20) + 'px';
+	}
+};
+
+CustomMarker.prototype.remove = function() {
+	if (this.div) {
+		this.div.parentNode.removeChild(this.div);
+		this.div = null;
+	}	
+};
+
+CustomMarker.prototype.getPosition = function() {
+	return this.latlng;	
+};
+
+///////////////////////////////////////////////////////////
+
+
+
+
 /**
 *	CHICAGO 41.8369, 87.6847
 *	LAS VEGDAS 36.1215,115.1739
@@ -47,19 +121,24 @@ function onSuccess(position) {
 
 	var bounds = new google.maps.LatLngBounds();
 
-	var marker1 = new google.maps.Marker({position: new google.maps.LatLng(41.8369, 87.6847),map: map});
+	var marker1 = new CustomMarker(new google.maps.LatLng(41.8369, 87.6847), map,{image: 'images/Chicago.jpg'});
+	//var marker1 = new google.maps.Marker({position: new google.maps.LatLng(41.8369, 87.6847),map: map});
 	bounds.extend(new google.maps.LatLng(41.8369, 87.6847));
 
-	var marker2 = new google.maps.Marker({position: new google.maps.LatLng(36.1215,115.1739),map: map});
+	var marker2 = new CustomMarker(new google.maps.LatLng(36.1215,115.1739), map,{image: 'images/las_vegas.jpg'});
+	//var marker2 = new google.maps.Marker({position: new google.maps.LatLng(36.1215,115.1739),map: map});
 	bounds.extend(new google.maps.LatLng(36.1215,115.1739));
 
-	var marker3 = new google.maps.Marker({position: new google.maps.LatLng(25.7753, 80.2089),map: map});
+	var marker3 = new CustomMarker(new google.maps.LatLng(25.7753, 80.2089), map,{image: 'images/Miami.jpg'});
+	//var marker3 = new google.maps.Marker({position: new google.maps.LatLng(25.7753, 80.2089),map: map});
 	bounds.extend(new google.maps.LatLng(25.7753, 80.2089));
 
-	var marker4 = new google.maps.Marker({position: new google.maps.LatLng(40.7127, 74.0059),map: map});
+	var marker4 = new CustomMarker(new google.maps.LatLng(40.7127, 74.0059), map,{image: 'images/NewYork.jpg'});
+	//var marker4 = new google.maps.Marker({position: new google.maps.LatLng(40.7127, 74.0059),map: map});
 	bounds.extend(new google.maps.LatLng(40.7127, 74.0059));
 
- 	var marker5 = new google.maps.Marker({position: new google.maps.LatLng(37.7833, 122.4167),map: map});
+	var marker5 = new CustomMarker(new google.maps.LatLng(37.7833, 122.4167), map,{image: 'images/San_Francisco.jpg'});
+ 	//var marker5 = new google.maps.Marker({position: new google.maps.LatLng(37.7833, 122.4167),map: map});
 	bounds.extend(new google.maps.LatLng(37.7833, 122.4167));
 
  	map.fitBounds(bounds);
@@ -81,6 +160,9 @@ function onSuccess(position) {
 	google.maps.event.addListener(marker5, 'mousedown', function(){
 		slider.goToSlide(4)	
 	});
+	
+		
+	
 }
 
 /**
@@ -135,3 +217,5 @@ function onError(error) {
 	}
 //var watchID = navigator.geolocation.watchPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: true});
 google.maps.event.addDomListener(window, 'load', onSuccess);
+
+
