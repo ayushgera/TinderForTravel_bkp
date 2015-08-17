@@ -22,6 +22,13 @@ $(document).ready(function(){
   
 });
 
+/**
+*	CHICAGO 41.8369, 87.6847
+*	LAS VEGDAS 36.1215,115.1739
+*   MIAMI 25.7753, 80.2089
+*	NYC 40.7127, 74.0059
+*	SAN FRANCISCO 37.7833, 122.4167
+*/
 
 function onSuccess(position) {
 	/*var element = document.getElementById('geolocation');
@@ -40,25 +47,25 @@ function onSuccess(position) {
 
 	var bounds = new google.maps.LatLngBounds();
 
-	var marker1 = new google.maps.Marker({position: myLatlng,map: map});
-	//bounds.extend(marker1);
+	var marker1 = new google.maps.Marker({position: new google.maps.LatLng(41.8369, 87.6847),map: map});
+	bounds.extend(new google.maps.LatLng(41.8369, 87.6847));
 
-	var marker2 = new google.maps.Marker({position: new google.maps.LatLng(47.8584831,2.3),map: map});
-	//bounds.extend(marker2);
+	var marker2 = new google.maps.Marker({position: new google.maps.LatLng(36.1215,115.1739),map: map});
+	bounds.extend(new google.maps.LatLng(36.1215,115.1739));
 
-	var marker3 = new google.maps.Marker({position: new google.maps.LatLng(48.89,2.39),map: map});
-	//bounds.extend(marker3);
+	var marker3 = new google.maps.Marker({position: new google.maps.LatLng(25.7753, 80.2089),map: map});
+	bounds.extend(new google.maps.LatLng(25.7753, 80.2089));
 
-	var marker4 = new google.maps.Marker({position: new google.maps.LatLng(46.88,2.38),map: map});
-	//bounds.extend(marker4);
+	var marker4 = new google.maps.Marker({position: new google.maps.LatLng(40.7127, 74.0059),map: map});
+	bounds.extend(new google.maps.LatLng(40.7127, 74.0059));
 
-	var marker5 = new google.maps.Marker({position: new google.maps.LatLng(48.83,2.3502476),map: map});
-	//bounds.extend(marker5);
+ 	var marker5 = new google.maps.Marker({position: new google.maps.LatLng(37.7833, 122.4167),map: map});
+	bounds.extend(new google.maps.LatLng(37.7833, 122.4167));
 
-	//map.fitBounds(bounds);
+ 	map.fitBounds(bounds);
 
-	//map.setCenter(bounds.getCenter(), 
-	 //                   map.getBoundsZoomLevel(bounds));
+	map.setCenter(bounds.getCenter(), 
+	                    map.getBoundsZoomLevel(bounds));
 					
 	google.maps.event.addListener(marker1, 'mousedown', function(){
 		slider.goToSlide(0)	;
