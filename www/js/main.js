@@ -25,6 +25,6 @@ $("#sliderContainer").vTiwari({
 });
 
 function pageNavigation(){
-	
+	$(".wrap").hide();
 	
 }
