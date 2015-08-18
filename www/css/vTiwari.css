@@ -239,27 +239,25 @@ body {
     background: url("../images/main/history/4.jpg") no-repeat scroll center center;
     background-size: cover;
 }
-#sliderContainer .pane15 .img {
-    background: url("../images/main/history/5.jpg") no-repeat scroll center center;
-    background-size: cover;
+
 }
-#sliderContainer .pane16 .img {
+#sliderContainer .pane15 .img {
     background: url("../images/main/music/0.jpg") no-repeat scroll center center;
     background-size: cover;
 }
-#sliderContainer .pane17 .img {
+#sliderContainer .pane16 .img {
     background: url("../images/main/music/1.jpg") no-repeat scroll center center;
     background-size: cover;
 }
-#sliderContainer .pane18 .img {
+#sliderContainer .pane17 .img {
     background: url("../images/main/music/2.jpg") no-repeat scroll center center;
     background-size: cover;
 }
-#sliderContainer .pane19 .img {
+#sliderContainer .pane18 .img {
     background: url("../images/main/music/3.jpg") no-repeat scroll center center;
     background-size: cover;
 }
-#sliderContainer .pane20 .img {
+#sliderContainer .pane19 .img {
     background: url("../images/main/music/4.jpg") no-repeat scroll center center;
     background-size: cover;
 }
