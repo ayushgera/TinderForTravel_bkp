@@ -1,3 +1,5 @@
+
+
 (function(){
 	$("#map-canvas").hide();
 })();
@@ -6,7 +8,6 @@ $("#sliderContainer").vTiwari({
 	// dislike callback
     onDislike: function (item) {
 	    // Perform some logic
-       var i=0;
 	   if(item.hasClass("lastItem")){
 			pageNavigation();
 	   }
@@ -14,7 +15,7 @@ $("#sliderContainer").vTiwari({
 	// like callback
     onLike: function (item) {
 	    // Perform some logic
-        var i=0;
+        likedIds.push(item.attr("id"));
 		if(item.hasClass("lastItem")){
 			pageNavigation();
 		}

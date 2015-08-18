@@ -144,7 +144,16 @@ function onSuccess() {
 
 	var bounds = new google.maps.LatLngBounds();
 
-	var marker1 = new CustomMarker(new google.maps.LatLng(41.8369, 87.6847), map,{image: 'Chicago.jpg'});
+	var new_markers=[];
+	var markers_length=0;
+	for(var i=0;i<likedIds.length;i++){
+		
+		imageUrl= "main/"+likedIds[i].substring(0, likedIds[i].length-1)+"/"+likedIds[i].substring(likedIds[i].length-1, likedIds[i].length)+".jpg";
+		new_markers[markers_length++] =new CustomMarker(new google.maps.LatLng(imageMap[likedIds[i]].latitude, imageMap[likedIds[i]].longitude), map,{image: imageUrl});
+		bounds.extend(new google.maps.LatLng(imageMap[likedIds[i]].latitude, imageMap[likedIds[i]].longitude))
+	}
+	
+	/*var marker1 = new CustomMarker(new google.maps.LatLng(41.8369, 87.6847), map,{image: 'Chicago.jpg'});
 	//var marker1 = new google.maps.Marker({position: new google.maps.LatLng(41.8369, 87.6847),map: map});
 	bounds.extend(new google.maps.LatLng(41.8369, 87.6847));
 
@@ -162,13 +171,13 @@ function onSuccess() {
 
 	var marker5 = new CustomMarker(new google.maps.LatLng(37.7833, 122.4167), map,{image: 'San_Francisco.jpg'});
  	//var marker5 = new google.maps.Marker({position: new google.maps.LatLng(37.7833, 122.4167),map: map});
-	bounds.extend(new google.maps.LatLng(37.7833, 122.4167));
+	bounds.extend(new google.maps.LatLng(37.7833, 122.4167));*/
 
  	map.fitBounds(bounds);
 
 	//map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
 	getZoomByBounds(map,bounds);			
-	google.maps.event.addListener(marker1, 'mousedown', function(){
+	/*google.maps.event.addListener(marker1, 'mousedown', function(){
 		slider.goToSlide(0)	;
 	});				
 	google.maps.event.addListener(marker2, 'mousedown', function(){
@@ -183,7 +192,7 @@ function onSuccess() {
 	google.maps.event.addListener(marker5, 'mousedown', function(){
 		slider.goToSlide(4)	
 	});
-	
+	*/
 		
 	
 }
