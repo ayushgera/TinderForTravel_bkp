@@ -1,4 +1,12 @@
 
+/**
+ * Set button action to trigger vTiwari like & dislike.
+ */
+$('.actions .like, .actions .dislike').click(function(e){
+	e.preventDefault();
+	$("#sliderContainer").vTiwari($(this).attr('class'));
+});
+
 
 (function(){
 	$("#map-canvas").hide();
@@ -29,6 +37,7 @@ $("#sliderContainer").vTiwari({
 
 function pageNavigation(){
 	$(".wrap").hide();
-	onSuccess();
+	$(".actions").hide();
+	onSuccess(); //loads the map
 	$("#map-canvas").show();
 }
