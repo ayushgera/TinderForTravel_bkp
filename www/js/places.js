@@ -127,7 +127,7 @@ CustomMarker.prototype.getPosition = function() {
 *	SAN FRANCISCO 37.7833, 122.4167
 */
 
-function onSuccess(position) {
+function onSuccess() {
 	/*var element = document.getElementById('geolocation');
 	element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
 	'Longitude: ' + position.coords.longitude + '<br />' +
@@ -239,6 +239,6 @@ function onError(error) {
 	'message: ' + error.message + '\n');
 	}
 //var watchID = navigator.geolocation.watchPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: true});
-google.maps.event.addDomListener(window, 'load', onSuccess);
+
 
 

@@ -1,4 +1,6 @@
-
+(function(){
+	$("#map-canvas").hide();
+})();
 
 $("#sliderContainer").vTiwari({
 	// dislike callback
@@ -26,5 +28,6 @@ $("#sliderContainer").vTiwari({
 
 function pageNavigation(){
 	$(".wrap").hide();
-	
+	onSuccess();
+	$("#map-canvas").show();
 }
