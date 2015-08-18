@@ -128,23 +128,83 @@ body {
 }
 
 
-#sliderContainer .pane5 .img {
-    background: url("../img/pane/las_vegas.jpg") no-repeat scroll center center;
-    background-size: cover;
-}
-#sliderContainer .pane4 .img {
-    background: url("../img/pane/NewYork.jpg") no-repeat scroll center center;
-    background-size: cover;
-}
-#sliderContainer .pane3 .img {
-    background: url("../img/pane/Chicago.jpg") no-repeat scroll center center;
+#sliderContainer .pane1 .img {
+    background: url("../images/main/adventure/0.jpg") no-repeat scroll center center;
     background-size: cover;
 }
 #sliderContainer .pane2 .img {
-    background: url("../img/pane/San_Francisco.jpg") no-repeat scroll center center;
+    background: url("../images/main/adventure/1.jpg") no-repeat scroll center center;
     background-size: cover;
 }
-#sliderContainer .pane1 .img {
-    background: url("../img/pane/Miami.jpg") no-repeat scroll center center;
+#sliderContainer .pane3.img {
+    background: url("../images/main/adventure/2.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane4 .img {
+    background: url("../images/main/adventure/3.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane5 .img {
+    background: url("../images/main/adventure/4.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane6 .img {
+    background: url("../images/main/food/0.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane7 .img {
+    background: url("../images/main/food/1.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane8 .img {
+    background: url("../images/main/food/2.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane9 .img {
+    background: url("../images/main/food/3.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane10 .img {
+    background: url("../images/main/history/0.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane11 .img {
+    background: url("../images/main/history/1.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane12 .img {
+    background: url("../images/main/history/2.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane13 .img {
+    background: url("../images/main/history/3.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane14 .img {
+    background: url("../images/main/history/4.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane15 .img {
+    background: url("../images/main/history/5.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane16 .img {
+    background: url("../images/main/music/0.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane17 .img {
+    background: url("../images/main/music/1.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane18 .img {
+    background: url("../images/main/music/2.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane19 .img {
+    background: url("../images/main/music/3.jpg") no-repeat scroll center center;
+    background-size: cover;
+}
+#sliderContainer .pane20 .img {
+    background: url("../images/main/music/4.jpg") no-repeat scroll center center;
     background-size: cover;
 }
