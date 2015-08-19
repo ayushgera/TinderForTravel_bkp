@@ -146,11 +146,11 @@ function onSuccess() {
 
 	var new_markers=[];
 	var markers_length=0;
-	for(var i=0;i<likedIds.length;i++){
+	for(var i=0;i<categoryIds.length;i++){
 		
-		imageUrl= "main/"+likedIds[i].substring(0, likedIds[i].length-1)+"/"+likedIds[i].substring(likedIds[i].length-1, likedIds[i].length)+".jpg";
-		new_markers[markers_length++] =new CustomMarker(new google.maps.LatLng(imageMap[likedIds[i]].latitude, imageMap[likedIds[i]].longitude), map,{image: imageUrl});
-		bounds.extend(new google.maps.LatLng(imageMap[likedIds[i]].latitude, imageMap[likedIds[i]].longitude))
+		imageUrl= "main/"+categoryIds[i].substring(0, categoryIds[i].length-1)+"/"+categoryIds[i].substring(categoryIds[i].length-1, categoryIds[i].length)+".jpg";
+		new_markers[markers_length++] =new CustomMarker(new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude), map,{image: imageUrl});
+		bounds.extend(new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude))
 	}
 	
 	/*var marker1 = new CustomMarker(new google.maps.LatLng(41.8369, 87.6847), map,{image: 'Chicago.jpg'});
