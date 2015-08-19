@@ -14,6 +14,17 @@ $('.actions .like, .actions .dislike').click(function(e){
 	//loadInitialImages();
 })();
 
+function shuffleArray(img,index,categ,prev){
+	for(var i=index+1;i<img.length;i++){
+		if(img[i].category==categ){
+			var imgTemp=img[prev];
+			img[prev]=img[i];
+			img[i]=imgTemp;
+			break;
+		}
+	}
+}
+
 $("#sliderContainer").vTiwari({
 	// dislike callback
     onDislike: function (item) {
@@ -26,9 +37,29 @@ $("#sliderContainer").vTiwari({
     onLike: function (item) {
 	    // Perform some logic
         likedIds.push(item.attr("id"));
+		
+		/*for(var i=0;i<imagesArr.length;i++){
+			if(imagesArr[i]==item.attr("id")){
+				imagesArr[i].like="1";
+				var category =  item.attr("id").replace(/\D/g,'');
+				if(imagesArr[i+1].category!=category){
+					var prev = i+1;
+					shuffleArray(imagesArr,i+1,category);
+					break;
+				} 
+			}
+
+		}	*/
+		
+		
+		
 		if(item.hasClass("lastItem")){
 			pageNavigation();
 		}
+		
+		
+		
+		
     },
 	animationRevertSpeed: 200,
 	animationSpeed: 400,
@@ -48,7 +79,7 @@ function pageNavigation(){
 
 function loadInitialImages()
 {
-	var imagesArr = [{"id":"adventure0","category":"adventure","event":"","like":"0"}, 
+	imagesArr = [{"id":"adventure0","category":"adventure","event":"","like":"0"}, 
 		{"id":"food0","category":"food","event":"","like":"0"},
 		{"id":"religion0","category":"religion","event":"","like":"0"},
 		{"id":"music0","category":"music","event":"","like":"0"},
@@ -80,16 +111,29 @@ function loadInitialImages()
 		{"id":"sports5","category":"sports","event":"","like":"0"},
 		];
 	
-	var imagePath = "../images/main";
-	
-	for(var i=0;i<imagesArr.length;i++)
-	{
+	var imagePath = "D:/thai/repo/mainRepo/TinderForTravel/www/images/main";
+		for(var i=0;i<imagesArr.length;i++){
 		var image = imagesArr[i]; 
 		var imageId =  image.id.replace ( /[^\d]/g, '' );
 		var img = parseInt(imageId);
 		var imageSrc = imagePath+"/"+image.category+"/"+img+".jpg";
-		$('#sliderContainer ul').append("<li><div style='background: url('"+imageSrc+"')' id='"+image.id+"'/><div class ='like'></div><div class='dislike'></div></li>");
-	}	
+		var  li = document.createElement('li');
+		var imageDiv= document.createElement('div');
+		$(li).attr("id",image.id);
+		//$(imageDiv).css("background","url(\'"+imageSrc+"\')"+" no-repeat scroll center center");
+		$(imageDiv).css("background","url(\'../www/images/main/adventure/4.jpg\') no-repeat scroll center center");
+		$(imageDiv).css("background-size", "cover");
+		var likeDiv= document.createElement('div');
+		$(likeDiv).addClass("like");
+		var dislikeDiv= document.createElement('div');
+		$(dislikeDiv).addClass("dislike");
+		li.appendChild(imageDiv);
+		li.appendChild(likeDiv);
+		li.appendChild(dislikeDiv);
+		if(i===imagesArr.length-1){
+			$(li).addClass("lastItem");
+		}
+	}
 	
 }
 
