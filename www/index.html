@@ -14,6 +14,18 @@
 				<link rel="stylesheet" href="css/jquery.mobile-1.4.1.min.css">
 				<link rel="stylesheet" href="css/listview-grid.css">
                 <!-- for like page end-->
+				<!--for description-->
+				<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+				<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+				<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet' type='text/css'>
+				<link href='http://fonts.googleapis.com/css?family=Raleway:400,800,300,100,500,700,600,900' rel='stylesheet' type='text/css'>
+				<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+				<script src="js/wow.min.js"></script>
+				<script>
+				 new WOW().init();
+				</script>
+				<!--/animated-css-->
+				<!--for desc end-->
 				<link rel="stylesheet" type="text/css" href="css/vTiwari.css">
 				<script type="text/javascript" src="cordova.js"></script>
 				
@@ -151,6 +163,7 @@
 				</script>
     </head>
     <body>
+	<div  data-role="page" id="page1">
         <div id="mainBody" class="wrap">
             <div id="sliderContainer">
               <ul id="events_list">
@@ -280,38 +293,31 @@
         </div>
 		
 		
-    <!-- jTinder trigger by buttons  -->
-    <div class="actions">
-        <a href="#" class="dislike"><i></i></a>
-        <a href="#" class="like"><i></i></a>
-    </div>
+		<!-- jTinder trigger by buttons  -->
+		<div class="actions">
+			<a href="#" class="dislike"><i></i></a>
+			<a href="#" class="like"><i></i></a>
+		</div>
+	
+	</div>
         
 		<!--<div id="geolocation" style="display:block;height:40%"></div>-->
-		<div id="map-canvas" style="display:block;"></div> 
+		<div  data-role="page" id="map-canvas" style="display:block;"></div> 
 
-		<!--<ul class="bxslider" style="display:block;margin-bottom:0.1%;">
-		  <li><img class="slider-image" src="images/Chicago.jpg" /></li>
-		  <li><img class="slider-image" src="images/las_vegas.jpg" /></li>
-			<li><img class="slider-image" src="images/Miami.jpg" /></li>
-		  <li><img class="slider-image" src="images/NewYork.jpg" /></li>
-		   <li><img class="slider-image" src="images/San_Francisco.jpg" /></li>
-		</ul>-->
+
 		
 		
 		
 		<!-- Element to pop up -->
-         <!-- Element to pop up -->
 			<div id="element_to_pop_up">
 				<a class="b-close">x<a/>
 				<div class="content" style="max-width:320px;max-height:400px;"></div>
 			</div>
 		
-		<!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
 		
-		
-		<div id="likesPage">
+		<div  data-role="page" id="likesPage">
 
-			<div data-role="page" data-theme="b" id="demo-page" class="my-page  ui-page-theme-b ui-page-active" data-url="demo-page" tabindex="0" style="min-height: 935px;">
+			<div  data-theme="b" id="demo-page" class="my-page  ui-page-theme-b ui-page-active" data-url="demo-page" tabindex="0" style="min-height: 935px;">
 
 				<div data-role="header" role="banner" class="ui-header ui-bar-inherit">
 					<h1 class="ui-title" role="heading" aria-level="1">Liked Items</h1>
@@ -357,12 +363,6 @@
 							<p class="numLikes">Likes 6</p>
 							<p class="ui-li-aside">food</p>
 						</a></li>
-						<!--<li data-item="shopping" class="ui-li-has-thumb"><a href="javascript:openMap('music');" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
-							<img src="img/pane/las_vegas.jpg" class="ui-li-thumb">
-							<h2>Shopping</h2>
-							<p class="numLikes">Likes 6</p>
-							<p class="ui-li-aside">shopping</p>
-						</a></li>-->
 					</ul>
 
 				</div>
@@ -375,6 +375,79 @@
 					
 
 		</div>
+		
+		
+		
+		<!-- description page-->
+		<div data-role="page" id="description-page">
+		<div id="home" class="banner-text wow fadeInUp" data-wow-delay="0.5s" style="position:absolute;top:10%;left:0;right:0;z-index:1;">
+					 <h1>Awesome Trip <span>Bangalore</span> In The<label>World</label></h1>
+					 <h2>Description about the city</h2>
+				 </div>
+		<div class="banner">
+		</div>
+		<div id="brief" class="brief">
+			 <div class="container">
+				<h4>BRIEF</h4>
+				 <div class="col-md-6 brief-grids wow fadeInLeft" data-wow-delay="0.5s">
+					 <img src="images/browse.jpg" alt=""/>
+					 <div class="brief-grid">
+						 <div class="brief-grid-text">
+							 <h3>Trip the awesomeness</h3>
+							 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							 quis nostrud exercitation ullamco laboris nisi ut.</p>
+						 </div>
+						 <div class="brief-grid-content1">
+							 <h3>yugoslavia City</h3>
+							 <p>Lorem lean startup ipsum product market fit customer development 
+								acquihire technical cofounder.</p>
+						 </div>
+						 <div class="brief-grid-content2">
+							 <h3>Donec et justo tincidunt</h3>
+							 <p>Lorem lean startup ipsum product market fit customer development 
+								acquihire technical cofounder.</p>
+						 </div>
+					 </div>
+				 </div>
+				 <div class="col-md-6 brief-grids wow fadeInRight" data-wow-delay="0.5s">
+					 <img src="images/browse2.jpg" alt=""/>
+					 <div class="brief-grid">
+						 <div class="brief-grid-text">
+							 <h3>Describe more about Trip</h3>
+							 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							 quis nostrud exercitation ullamco laboris nisi ut.</p>
+						 </div>
+						 <div class="brief-grid-content1 good">
+							 <h3>We Think Globally</h3>
+							 <p>Lorem lean startup ipsum product market fit customer development 
+								acquihire technical cofounder.</p>
+						 </div>
+						 <div class="brief-grid-content2 video-bac">
+							 <h3>Etiam interdum nisi ligula</h3>
+							 <p>Lorem lean startup ipsum product market fit customer development 
+								acquihire technical cofounder.</p>
+						 </div>
+					 </div>
+				 </div>
+				 <div class="clearfix"> </div>		 
+			 </div>
+		</div>
+
+		<div class="footer">
+			 <div class="container">
+				 <div class="ftr-logo">
+					 <a class="wow bounceIn" data-wow-delay="0.5s" href="index.html"><h1><span>Tinder For Travel</span></h1></a>
+				 </div>
+				 <div class="copy-right wow bounceInUp" data-wow-delay="0.5s">
+					 <p>Copyright &#169; 2015 Tinder For Travel . All Rights Reserved.</p>
+				 </div>
+
+			 </div>
+		</div>
+		</div>
+
+		<!-- description page ends-->
+		
 		
 		
 		

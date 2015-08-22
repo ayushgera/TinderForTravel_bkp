@@ -73,19 +73,20 @@ CustomMarker.prototype.draw = function() {
 			
 			/*find image to load*/
 			
-			
-			
+		$("#map-canvas").hide();
+		$("body").css("overflow","auto");
+		$("#description-page").show();
 			
 			
 			/*find image END*/
-			jQuery('#element_to_pop_up').bPopup({
+			/*jQuery('#element_to_pop_up').bPopup({
                     appendTo: 'form'
                     , zIndex: 2
                     , modalClose: false,
 					content:'image',
 					contentContainer:'.content',
 					loadUrl:'images/'+div.id
-                });			
+                });	*/		
 			google.maps.event.trigger(self, "click");
 		});
 		

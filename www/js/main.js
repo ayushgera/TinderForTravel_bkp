@@ -11,6 +11,7 @@ $('.actions .like, .actions .dislike').click(function(e){
 (function(){
 	$("#map-canvas").hide();
 	$("#likesPage").hide();
+	$("#description-page").hide();
 	loadInitialImages();
 })();
 
