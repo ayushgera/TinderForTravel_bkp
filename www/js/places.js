@@ -47,16 +47,17 @@ CustomMarker.prototype.draw = function() {
 		div.id = self.args.image;
 		div.style.position = 'absolute';
 		div.style.cursor = 'pointer';
-		div.style.width = '40px';
-		div.style.height = '40px';
-		div.style.padding = '3px';
-		div.style.backgroundColor = 'white';
+		//div.style.width = '40px';
+		//div.style.height = '40px';
+		//div.style.padding = '3px';
+		//div.style.backgroundColor = 'white';
 		//div.style.background = 'blue';
 		//div.style.backgroundImage= "url('las_vegas.jpg')";
 		var elem = document.createElement("img");
-		elem.src = "images/"+self.args.image;
-		elem.setAttribute("height", "40px !important");
-		elem.setAttribute("width", "40px !important");
+		elem.src= "images/m3.png"
+		//elem.src = "images/"+self.args.image;
+		//elem.setAttribute("height", "40px !important");
+		//elem.setAttribute("width", "40px !important");
 		div.appendChild(elem);
 		
 		
@@ -75,6 +76,7 @@ CustomMarker.prototype.draw = function() {
 			
 		$("#map-canvas").hide();
 		$("body").css("overflow","auto");
+		$(".banner").css("background-image","url('../www/images/"+self.args.image+"')");
 		$("#description-page").show();
 			
 			
