@@ -56,8 +56,8 @@ CustomMarker.prototype.draw = function() {
 		var elem = document.createElement("img");
 		elem.src= "images/m3.png"
 		//elem.src = "images/"+self.args.image;
-		//elem.setAttribute("height", "40px !important");
-		//elem.setAttribute("width", "40px !important");
+		elem.setAttribute("height", "64px !important");
+		elem.setAttribute("width", "40px !important");
 		div.appendChild(elem);
 		
 		
