@@ -1,4 +1,4 @@
-
+//var paneArray=["pane"]
 /**
  * Set button action to trigger vTiwari like & dislike.
  */
@@ -11,7 +11,8 @@ $('.actions .like, .actions .dislike').click(function(e){
 (function(){
 	$("#map-canvas").hide();
 	$("#likesPage").hide();
-	//loadInitialImages();
+	$("#description-page").hide();
+	loadInitialImages();
 })();
 
 function shuffleArray(img,index,categ,prev){
@@ -20,14 +21,25 @@ function shuffleArray(img,index,categ,prev){
 			var imgTemp=img[prev];
 			img[prev]=img[i];
 			img[i]=imgTemp;
+			if($(img[prev].id).hasClass("lastItem")){
+				$(img[prev].id).removeClass("lastItem");
+				updateLastItem();
+			}
 			break;
 		}
 	}
 }
 
+function updateLastItem(){
+	$("#events_list :first-child").addClass("lastItem");
+	
+}
+
 function putInDatabase(map){
 	window.localStorage.setItem("categoryCount",JSON.stringify(map));
 }
+
+
 
 function categoryCount(categoryId,like){
 	var category= categoryId.substring(0,categoryId.length-1);
@@ -47,11 +59,32 @@ function categoryCount(categoryId,like){
 	}
 }
 
+function orderArray(index,arr,category)
+{
+	for(var x=index;x>=0;x--)
+	{
+		if(imagesArr[x].category==category){
+			var prev = imagesArr[x];
+			imagesArr[x]=imagesArr[index];
+			imagesArr[index]=prev;
+			if($("#"+imagesArr[index].id).hasClass("lastItem")){
+				$("#"+imagesArr[index].id).removeClass("lastItem");	
+				updateLastItem();
+			}
+				imagesArr.splice(index+1,1);
+				loadInitialImages();
+			break;
+		}
+	}
+
+}
+
+
 $("#sliderContainer").vTiwari({
 	// dislike callback
     onDislike: function (item) {
 	    // Perform some logic
-		categoryCount(item.attr("id"),true);
+		categoryCount(item.attr("id"),false);
 	   if(item.hasClass("lastItem")){
 			putInDatabase(categoryCountMap);
 			pageNavigation();
@@ -60,32 +93,22 @@ $("#sliderContainer").vTiwari({
 	// like callback
     onLike: function (item) {
 	    // Perform some logic
-        likedIds.push(item.attr("id"));
-		
-		categoryCount(item.attr("id"),true);
-		/*for(var i=0;i<imagesArr.length;i++){
-			if(imagesArr[i]==item.attr("id")){
+        likedIds.push(item.attr("id"));	
+	categoryCount(item.attr("id"),true);
+		/*
+		for(var i=imagesArr.length-1,j=i-1;i>=0 && j>=0;i--,j--){
+			if(imagesArr[i].id==item.attr("id")){
 				imagesArr[i].like="1";
-				var category =  item.attr("id").replace(/\D/g,'');
-				if(imagesArr[i+1].category!=category){
-					var prev = i+1;
-					shuffleArray(imagesArr,i+1,category);
-					break;
-				} 
+				var category =  item.attr("id").substring(0,item.attr("id").length-1);
+				if(imagesArr[j].category!=category){
+					orderArray(j,imagesArr,category);
+				}
 			}
-
-		}	*/
-		
-		
-		
+		}*/		
 		if(item.hasClass("lastItem")){
 			putInDatabase(categoryCountMap);
 			pageNavigation();
-		}
-		
-		
-		
-		
+		}		
     },
 	animationRevertSpeed: 200,
 	animationSpeed: 400,
@@ -103,65 +126,114 @@ function pageNavigation(){
 	$("#likesPage").show();
 }
 
-function loadInitialImages()
-{
-	imagesArr = [{"id":"adventure0","category":"adventure","event":"","like":"0"}, 
-		{"id":"food0","category":"food","event":"","like":"0"},
-		{"id":"religion0","category":"religion","event":"","like":"0"},
-		{"id":"music0","category":"music","event":"","like":"0"},
-		{"id":"sports0","category":"sports","event":"","like":"0"},
-		{"id":"adventure1","category":"adventure","event":"","like":"0"}, 
-		{"id":"food1","category":"food","event":"","like":"0"},
-		{"id":"religion1","category":"religion","event":"","like":"0"},
-		{"id":"music1","category":"music","event":"","like":"0"},
-		{"id":"sports1","category":"sports","event":"","like":"0"},
-		{"id":"adventure2","category":"adventure","event":"","like":"0"}, 
-		{"id":"food2","category":"food","event":"","like":"0"},
-		{"id":"religion2","category":"religion","event":"","like":"0"},
-		{"id":"music2","category":"music","event":"","like":"0"},
-		{"id":"sports2","category":"sports","event":"","like":"0"},
-		{"id":"adventure3","category":"adventure","event":"","like":"0"}, 
-		{"id":"food3","category":"food","event":"","like":"0"},
-		{"id":"religion3","category":"religion","event":"","like":"0"},
-		{"id":"music3","category":"music","event":"","like":"0"},
-		{"id":"sports3","category":"sports","event":"","like":"0"},
-		{"id":"adventure4","category":"adventure","event":"","like":"0"}, 
-		{"id":"food4","category":"food","event":"","like":"0"},
-		{"id":"religion4","category":"religion","event":"","like":"0"},
-		{"id":"music4","category":"music","event":"","like":"0"},
-		{"id":"sports4","category":"sports","event":"","like":"0"},
-		{"id":"adventure5","category":"adventure","event":"","like":"0"}, 
-		{"id":"food5","category":"food","event":"","like":"0"},
-		{"id":"religion5","category":"religion","event":"","like":"0"},
-		{"id":"music5","category":"music","event":"","like":"0"},
-		{"id":"sports5","category":"sports","event":"","like":"0"},
-		];
-	
-	var imagePath = "D:/thai/repo/mainRepo/TinderForTravel/www/images/main";
-		for(var i=0;i<imagesArr.length;i++){
-		var image = imagesArr[i]; 
-		var imageId =  image.id.replace ( /[^\d]/g, '' );
-		var img = parseInt(imageId);
-		var imageSrc = imagePath+"/"+image.category+"/"+img+".jpg";
-		var  li = document.createElement('li');
-		var imageDiv= document.createElement('div');
-		$(li).attr("id",image.id);
-		//$(imageDiv).css("background","url(\'"+imageSrc+"\')"+" no-repeat scroll center center");
-		$(imageDiv).css("background","url(\'../www/images/main/adventure/4.jpg\') no-repeat scroll center center");
-		$(imageDiv).css("background-size", "cover");
-		var likeDiv= document.createElement('div');
-		$(likeDiv).addClass("like");
-		var dislikeDiv= document.createElement('div');
-		$(dislikeDiv).addClass("dislike");
-		li.appendChild(imageDiv);
-		li.appendChild(likeDiv);
-		li.appendChild(dislikeDiv);
-		if(i===imagesArr.length-1){
-			$(li).addClass("lastItem");
-		}
+function reStructureImagesArr(imagesArr,categoryCountMap){
+	sortedMap= sortCategoryCountMap(categoryCountMap);
+	for(var i=0;i<sortedMap.length;i++){
+		sortedMapObject[sortedMap[i][0]]=sortedMap[i][1];
 	}
-	
+	imagesArr.sort(compare);
 }
+
+function compare(a,b) {
+  if (sortedMapObject[a.category] < sortedMapObject[b.category])
+    return -1;
+  if (sortedMapObject[a.category] > sortedMapObject[b.category])
+    return 1;
+  return 0;
+}
+
+
+function sortCategoryCountMap(map){
+	var sortable = [];
+	for (var category in map)
+		  sortable.push([category, map[category]])
+	sortable.sort(function(a, b) {return a[1] - b[1]})
+	return sortable;
+}
+
+
+function loadInitialImages(){
+    if(localStorage.getItem("categoryCount") !== null){
+        reStructureImagesArr(imagesArr,JSON.parse(localStorage.getItem("categoryCount")));
+    }
+    
+    /*if(imagesArr.length===0){
+     imagesArr = [{"id":"adventure0","category":"adventure","event":"","like":"0"},
+     {"id":"food0","category":"food","event":"","like":"0"},
+     //{"id":"religion0","category":"religion","event":"","like":"0"},
+     {"id":"music0","category":"music","event":"","like":"0"},
+     //{"id":"sports0","category":"sports","event":"","like":"0"},
+     {"id":"adventure1","category":"adventure","event":"","like":"0"},
+     {"id":"food1","category":"food","event":"","like":"0"},
+     //{"id":"religion1","category":"religion","event":"","like":"0"},
+     {"id":"music1","category":"music","event":"","like":"0"},
+     //{"id":"sports1","category":"sports","event":"","like":"0"},
+     {"id":"adventure2","category":"adventure","event":"","like":"0"},
+     {"id":"food2","category":"food","event":"","like":"0"},
+     //{"id":"religion2","category":"religion","event":"","like":"0"},
+     {"id":"music2","category":"music","event":"","like":"0"},
+     //{"id":"sports2","category":"sports","event":"","like":"0"},
+     {"id":"adventure3","category":"adventure","event":"","like":"0"},
+     {"id":"food3","category":"food","event":"","like":"0"},
+     //{"id":"religion3","category":"religion","event":"","like":"0"},
+     {"id":"music3","category":"music","event":"","like":"0"},
+     //{"id":"sports3","category":"sports","event":"","like":"0"},
+     {"id":"adventure4","category":"adventure","event":"","like":"0"},
+     {"id":"food4","category":"food","event":"","like":"0"},
+     //{"id":"religion4","category":"religion","event":"","like":"0"},
+     {"id":"music4","category":"music","event":"","like":"0"},
+     //{"id":"sports4","category":"sports","event":"","like":"0"}
+     ];
+     }
+     else{
+     $("ul li").remove();
+     }*/
+    var imagePath = "../www/images/main";
+    for(var i=0;i<imagesArr.length;i++){
+        var panelClass="pane"+(i+1);
+        var image = imagesArr[i];
+        var imageId =  image.id.replace ( /[^\d]/g, '' );
+        var img = parseInt(imageId);
+        var imageSrc = imagePath+"/"+image.category+"/"+img+".jpg";
+        var  li = document.createElement('li');
+        var imageDiv= document.createElement('div');
+        var titleDiv = document.createElement('div');
+        var titleFont = document.createElement('font');
+		
+        $("<font style='font-size:1em; color:#fff; font-weight:500; margin-bottom:0.5em; font-family: 'Raleway', sans-serif; padding: 4px 13px 7px; word-wrap: break-word;'>"+imagesArr[i].title+"</font>").appendTo(titleDiv);
+        $(titleDiv).css("background-color","rgba(0,0,0,0.8)");
+		$(titleDiv).css("width","100%");
+		$(titleDiv).css("padding","1em");
+		$(titleDiv).css("position","absolute");
+		$(titleDiv).css("bottom","0");
+		$(titleDiv).children().css("color","white");
+        $(li).attr("id",image.id);
+        $(imageDiv).css("background","url(\'"+imageSrc+"\') no-repeat scroll center center");
+        $(imageDiv).addClass("img");
+        $(imageDiv).css("background-size", "cover");
+        $(imageDiv).append(titleDiv);
+        var likeDiv= document.createElement('div');
+        $(likeDiv).addClass("like");
+        var dislikeDiv= document.createElement('div');
+        $(dislikeDiv).addClass("dislike");
+        li.appendChild(imageDiv);
+        li.appendChild(likeDiv);
+        $(li).addClass(panelClass);
+        li.appendChild(dislikeDiv);
+        var ul = document.getElementById("events_list");
+        var divCont = document.getElementById("sliderContainer");
+        var wrap = document.getElementById("mainBody");
+        ul.appendChild(li);
+        divCont.appendChild(ul);
+        wrap.appendChild(divCont);
+        
+        if(i===0){
+            $(li).addClass("lastItem");
+        }
+    }
+    
+}
+
 
 
 function updateLikedItems(){
@@ -193,7 +265,7 @@ function openMap(category){
 			categoryIds.push(likedIds[i]);
 			onSuccess(); //loads the map
 			$("#map-canvas").show();
-			$("#likesPage").show();
+			$("#likesPage").hide();
 		}
 	}
 }

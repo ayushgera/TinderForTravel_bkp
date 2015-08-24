@@ -23,8 +23,6 @@
 }); */
 
 
-
-
 ///////////////////////////////////////////////////////////////
 
 function CustomMarker(latlng, map, args) {
@@ -75,19 +73,20 @@ CustomMarker.prototype.draw = function() {
 			
 			/*find image to load*/
 			
-			
-			
+		$("#map-canvas").hide();
+		$("body").css("overflow","auto");
+		$("#description-page").show();
 			
 			
 			/*find image END*/
-			jQuery('#element_to_pop_up').bPopup({
+			/*jQuery('#element_to_pop_up').bPopup({
                     appendTo: 'form'
                     , zIndex: 2
                     , modalClose: false,
 					content:'image',
 					contentContainer:'.content',
 					loadUrl:'images/'+div.id
-                });			
+                });	*/		
 			google.maps.event.trigger(self, "click");
 		});
 		
@@ -145,12 +144,25 @@ function onSuccess() {
 	var bounds = new google.maps.LatLngBounds();
 
 	var new_markers=[];
+	//var old_markers=[];
 	var markers_length=0;
 	for(var i=0;i<categoryIds.length;i++){
 		
 		imageUrl= "main/"+categoryIds[i].substring(0, categoryIds[i].length-1)+"/"+categoryIds[i].substring(categoryIds[i].length-1, categoryIds[i].length)+".jpg";
 		new_markers[markers_length++] =new CustomMarker(new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude), map,{image: imageUrl});
-		bounds.extend(new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude))
+		//old_markers[markers_length++]=new google.maps.Marker({position: new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude),map: map});
+		/*google.maps.event.addListener(old_markers[markers_length-1], 'mousedown', function(){
+							//find image END
+				jQuery('#element_to_pop_up').bPopup({
+                    appendTo: 'form'
+                    , zIndex: 2
+                    , modalClose: false,
+					content:'image',
+					contentContainer:'.content',
+					loadUrl:'images/'+imageUrl
+                });
+		});	*/
+		bounds.extend(new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude));
 	}
 	
 	/*var marker1 = new CustomMarker(new google.maps.LatLng(41.8369, 87.6847), map,{image: 'Chicago.jpg'});

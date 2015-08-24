@@ -14,6 +14,18 @@
 				<link rel="stylesheet" href="css/jquery.mobile-1.4.1.min.css">
 				<link rel="stylesheet" href="css/listview-grid.css">
                 <!-- for like page end-->
+                <!--for description-->
+                <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+                <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+                <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet' type='text/css'>
+                    <link href='http://fonts.googleapis.com/css?family=Raleway:400,800,300,100,500,700,600,900' rel='stylesheet' type='text/css'>
+                    <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+                    <script src="js/wow.min.js"></script>
+                    <script>
+                    new WOW().init();
+                    </script>
+                    <!--/animated-css-->
+                    <!--for desc end-->
 				<link rel="stylesheet" type="text/css" href="css/vTiwari.css">
 				<script type="text/javascript" src="cordova.js"></script>
 				
@@ -60,11 +72,19 @@
 					color:#000;
 					display:none; 
 					padding:20px;
-					min-width:400px;
+					min-width:350px;
 					min-height: 180px;
-					width:auto !important;
-					height:auto !important;
+					/*width:auto !important;
+					height:auto !important;*/
 				}
+				#element_to_pop_up .content{
+					max-width:100%;
+				}
+				
+				/*#element_to_pop_up .content img{ 
+					width:100%;
+					height:100%;
+				}*/
 				.b-close{
 					cursor:pointer;
 					position:absolute;
@@ -106,147 +126,56 @@
 					"music3": {latitude:12.991428, longitude:77.596921}, //Alliance Francaise de Bangalore
 					"music4": {latitude:12.971599, longitude:77.594563} //Ruh - The Soul of the Desert
 				};
-				var categoryCountMap={};
+				var categoryCountMap=localStorage.getItem("categoryCount") !== null?JSON.parse(localStorage.getItem("categoryCount")):{};
 				var likedIds=[];
 				var categoryIds=[];
 				var imagesArr=[];
+				var sortedMapObject={};
+				
+				var imagesArr = [{"id":"adventure0","category":"adventure","event":"","like":"0","title":"Wonderla"},
+                                {"id":"food0","category":"food","event":"","like":"0","title":"Park Plaza"},
+                                //{"id":"religion0","category":"religion","event":"","like":"0"},
+                                {"id":"music0","category":"music","event":"","like":"0","title":"Chowdiah Memorial Hall"},
+                                //{"id":"sports0","category":"sports","event":"","like":"0"},
+                                {"id":"adventure1","category":"adventure","event":"","like":"0","title":"Dirt Mania Adventure"},
+                                {"id":"food1","category":"food","event":"","like":"0","title":"ITC Gardenia"},
+                                //{"id":"religion1","category":"religion","event":"","like":"0"},
+                                {"id":"music1","category":"music","event":"","like":"0","title":"Goethe-Institute Max Mueller"},
+                                //{"id":"sports1","category":"sports","event":"","like":"0"},
+                                 {"id":"adventure2","category":"adventure","event":"","like":"0","title":"Banerghatta National Park"},
+                                {"id":"food2","category":"food","event":"","like":"0","title":"IBIS"},
+                                //{"id":"religion2","category":"religion","event":"","like":"0"},
+                                {"id":"music2","category":"music","event":"","like":"0","title":"WXYZ Bar - Aloft"},
+                                //{"id":"sports2","category":"sports","event":"","like":"0"},
+                                {"id":"adventure3","category":"adventure","event":"","like":"0","title":"Skandagiri Trek"},
+                                {"id":"food3","category":"food","event":"","like":"0","title":"Keys"},
+                                //{"id":"religion3","category":"religion","event":"","like":"0"},
+                                {"id":"music3","category":"music","event":"","like":"0","title":"Alliance Francaise de Bangalore"},
+                                //{"id":"sports3","category":"sports","event":"","like":"0"},
+                                {"id":"adventure4","category":"adventure","event":"","like":"0","title":"Tadiyandamol"},
+                                {"id":"food4","category":"food","event":"","like":"0","title":"AB's"},
+                                //{"id":"religion4","category":"religion","event":"","like":"0"},
+                                {"id":"music4","category":"music","event":"","like":"0","title":"Ruh - The Soul of the Desert"},
+                                //{"id":"sports4","category":"sports","event":"","like":"0"}
+                        ];
+				
+				
 				</script>
     </head>
     <body>
-        <div class="wrap">
+        <div id="mainBody" class="wrap">
             <div id="sliderContainer">
-              <ul>
-                      <li id="adventure0" class="pane1 lastItem">
-                        <div class="img"></div>
-                        <div>Wonder La</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>
-                    <li id="adventure1" class="pane2">
-                        <div class="img"></div>
-                        <div>Dirt Mania</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>
-                  <!-- <li id="adventure2" class="pane3">
-                        <div class="img"></div>
-                        <div>Bannerghatta National Park</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>-->
-                    <li id="adventure3" class="pane4">
-                        <div class="img"></div>
-                        <div>Skandagiri Trek</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>
-                    <li id="adventure4" class="pane5">
-                        <div class="img"></div>
-                        <div>Tadiyandamol</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>
-					<li id="food0" class="pane6">
-                        <div class="img"></div>
-                        <div>Park Plaza</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>
-					<li id="food1" class="pane7">
-                        <div class="img"></div>
-                        <div>ITC Gardenia</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>
-					<li id="food2" class="pane8">
-                        <div class="img"></div>
-                        <div>IBIS</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>
-					<li id="food3" class="pane9">
-                        <div class="img"></div>
-                        <div>Keys</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>
-					<li id="food4" class="pane9">
-                        <div class="img"></div>
-                        <div>AB's</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>
-					<li id="history0" class="pane10">
-                        <div class="img"></div>
-                        <div>Lal bagh</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>
-					                    
-					<li id="history1" class="pane11">
-                        <div class="img"></div>
-                        <div>Cubbon Park</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>                    
-					<li id="history2" class="pane12">
-                        <div class="img"></div>
-                        <div>Bangalore Palace</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>                    
-					<li id="history3" class="pane13">
-                        <div class="img"></div>
-                        <div>Bangalore Fort</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>                    
-					<li id="history4" class="pane14">
-                        <div class="img"></div>
-                        <div>Devanhalli Fort</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li>                    
-<!--<li id="music0" class="pane15">
-                        <div class="img"></div>
-                        <div>Chowdiah Memorial Hall</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li> -->
-					<li id="music1" class="pane16">
-                        <div class="img"></div>
-                        <div>Goethe-Institute Max Mueller Bhavan</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li> 
-					<li id="music2" class="pane17">
-                        <div class="img"></div>
-                        <div>WXYZ Bar - Aloft </div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li> 
-					<li id="music3" class="pane18">
-                        <div class="img"></div>
-                        <div>Alliance Francaise</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li> 
-					<li id="music4" class="pane19">
-                        <div class="img"></div>
-                        <div>Ruh - The Soul of the Desert</div>
-                        <div class="like"></div>
-                        <div class="dislike"></div>
-                    </li> 
+              <ul id="events_list" >
+                                     
                 </ul>
+              
             </div>
+           
         </div>
 		
 		
     <!-- jTinder trigger by buttons  -->
-    <div class="actions">
-        <a href="#" class="dislike"><i></i></a>
-        <a href="#" class="like"><i></i></a>
-    </div>
+   
         
 		<!--<div id="geolocation" style="display:block;height:40%"></div>-->
 		<div id="map-canvas" style="display:block;"></div> 
@@ -265,7 +194,7 @@
          <!-- Element to pop up -->
 			<div id="element_to_pop_up">
 				<a class="b-close">x<a/>
-				<div class="content" style="max-width:400px;max-height:400px;"></div>
+				<div class="content" style="max-width:320px;max-height:400px;"></div>
 			</div>
 		
 		<!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
@@ -281,19 +210,13 @@
 				</div>
 
 				<div role="main" class="ui-content">
-
+                    
 					<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 						<li data-item="music" class="ui-li-has-thumb ui-first-child"><a href="javascript:openMap('music');" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
 							<img src="images/main/music/0.jpg" class="ui-li-thumb">
 							<h2>Music</h2>
 							<p class="numLikes">Likes 2</p>
 							<p class="ui-li-aside">music</p>
-						</a></li>
-						<li data-item="sports" class="ui-li-has-thumb"><a href="javascript:openMap('sports');" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
-							<img src="images/main/sports/0.jpg" class="ui-li-thumb">
-							<h2>Sports</h2>
-							<p class="numLikes">Likes 3</p>
-							<p class="ui-li-aside">sports</p>
 						</a></li>
 						<li data-item="adventure" class="ui-li-has-thumb"><a href="javascript:openMap('adventure');" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
 							<img src="img/pane/Miami.jpg" class="ui-li-thumb">
@@ -306,12 +229,6 @@
 							<h2>History</h2>
 							<p class="numLikes">Likes 7</p>
 							<p class="ui-li-aside">history</p>
-						</a></li>
-						<li data-item="religion" class="ui-li-has-thumb"><a href="javascript:openMap('religion');" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
-							<img src="images/main/religion/0.jpg" class="ui-li-thumb">
-							<h2>Religion</h2>
-							<p class="numLikes">Likes 5</p>
-							<p class="ui-li-aside">religion</p>
 						</a></li>
 						<li data-item="food" class="ui-li-has-thumb"><a href="javascript:openMap('food');" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
 							<img src="images/main/food/0.jpg" class="ui-li-thumb">
@@ -338,6 +255,73 @@
 
 		</div>
 		
+        <!-- description page-->
+        <div data-role="page" id="description-page">
+        <div id="home" class="banner-text wow fadeInUp" data-wow-delay="0.5s" style="position:absolute;top:10%;left:0;right:0;z-index:1;">
+        <h1>Awesome Trip <span>Bangalore</span> In The<label>World</label></h1>
+        <h2>Description about the event</h2>
+        </div>
+        <div class="banner">
+        </div>
+        <div id="brief" class="brief">
+        <div class="container">
+        <div class="col-md-6 brief-grids wow fadeInLeft" data-wow-delay="0.5s">
+        <img class="img1" alt=""/>
+        <div class="brief-grid">
+        <div class="brief-grid-text">
+							 <h3>Description</h3>
+                             <p>This event is awesome. Here it has the follwing features..</p>
+                             </div>
+                             <div class="brief-grid-content1">
+                             <h3>Entertainment</h3>
+                             <p>Lorem lean startup ipsum product market fit customer development
+                             acquihire technical cofounder.</p>
+                             </div>
+                             <div class="brief-grid-content2">
+                             <h3>Style and Fashion</h3>
+                             <p>Lorem lean startup ipsum product market fit customer development
+                             acquihire technical cofounder.</p>
+                             </div>
+                             </div>
+                             </div>
+                             <div class="col-md-6 brief-grids wow fadeInRight" data-wow-delay="0.5s">
+                             <img src="images/browse2.jpg" alt=""/>
+                             <div class="brief-grid">
+                             <div class="brief-grid-text">
+                             <h3>Want to Book this event? Dont worry you can do it right here...</h3>
+                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                             quis nostrud exercitation ullamco laboris nisi ut.</p>
+                             </div>
+                             <div class="brief-grid-content1 good">
+                             <h3>User Reviews</h3>
+                             <p>User 1: A must visit event</p>
+                             <p>User 2: I had a great time there.</p>
+                             </div>
+                             <div style="text-align: center;">
+                                <button type="button" class="btn btn-primary btn-lg">BOOK NOW</button>
+                             </div>
+                             
+                             </div>
+                             </div>
+                             <div class="clearfix"> </div>		 
+                             </div>
+                             </div>
+                             
+                             <div class="footer">
+                             <div class="container">
+                             <div class="ftr-logo">
+                             <a class="wow bounceIn" data-wow-delay="0.5s" href="index.html"><h1><span>Tinder For Travel</span></h1></a>
+                             </div>
+                             <div class="copy-right wow bounceInUp" data-wow-delay="0.5s">
+                             <p>Copyright &#169; 2015 Tinder For Travel . All Rights Reserved.</p>
+                             </div>
+                             
+                             </div>
+                             </div>
+                             </div>
+                             
+                             <!-- description page ends-->
+
 		
 		
 		
