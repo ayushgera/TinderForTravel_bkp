@@ -15,7 +15,8 @@ $('.actions .like, .actions .dislike').click(function(e){
 	
 	loadInitialImages();
 	var loadedImageId=$("#events_list li").last().attr("id");
-			$("#back-cover").css("background","url('../www/images/main/"+loadedImageId.substring(0,loadedImageId.length-1)+"/"+loadedImageId.substring(loadedImageId.length,loadedImageId.length-1)+".jpg')");
+			$("#back-cover").css("background","url('../www/images/main/"+loadedImageId.substring(0,loadedImageId.length-1)+"/"+loadedImageId.substring(loadedImageId.length,loadedImageId.length-1)+".jpg')  no-repeat 0px 0px");
+			$("#back-cover").css("background-size","cover");
 			  $("#back-cover").css("filter","blur(5px)");
 			  $("#back-cover").css("-webkit-filter","blur(5px)");
 })();
@@ -92,7 +93,8 @@ $("#sliderContainer").vTiwari({
 		categoryCount(item.attr("id"),false);
 	if(currentImage!=0){
 			var loadedImageId=imagesArr[--currentImage].id;
-			$("#back-cover").css("background","url('../www/images/main/"+loadedImageId.substring(0,loadedImageId.length-1)+"/"+loadedImageId.substring(loadedImageId.length,loadedImageId.length-1)+".jpg')");
+			$("#back-cover").css("background","url('../www/images/main/"+loadedImageId.substring(0,loadedImageId.length-1)+"/"+loadedImageId.substring(loadedImageId.length,loadedImageId.length-1)+".jpg')  no-repeat 0px 0px");
+						$("#back-cover").css("background-size","cover");
 	}
 	   if(item.hasClass("lastItem")){
 			putInDatabase(categoryCountMap);
@@ -106,7 +108,8 @@ $("#sliderContainer").vTiwari({
 	categoryCount(item.attr("id"),true);
 	if(currentImage!=0){
 			var loadedImageId=imagesArr[--currentImage].id;
-			$("#back-cover").css("background","url('../www/images/main/"+loadedImageId.substring(0,loadedImageId.length-1)+"/"+loadedImageId.substring(loadedImageId.length,loadedImageId.length-1)+".jpg')");
+			$("#back-cover").css("background","url('../www/images/main/"+loadedImageId.substring(0,loadedImageId.length-1)+"/"+loadedImageId.substring(loadedImageId.length,loadedImageId.length-1)+".jpg')  no-repeat 0px 0px");
+						$("#back-cover").css("background-size","cover");
 	}
 	
 		/*
