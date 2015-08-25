@@ -128,7 +128,9 @@
 				};
 				var categoryCountMap=localStorage.getItem("categoryCount") !== null?JSON.parse(localStorage.getItem("categoryCount")):{};
 				var likedIds=[];
+				var likedTitles=[];
 				var categoryIds=[];
+				var categoryTitles=[];
 				var imagesArr=[];
 				var sortedMapObject={};
 				
@@ -259,7 +261,7 @@
         <!-- description page-->
         <div data-role="page" id="description-page">
         <div id="home" class="banner-text wow fadeInUp" data-wow-delay="0.5s" style="position:absolute;top:10%;left:0;right:0;z-index:1;">
-        <h1>Awesome Trip <span>Bangalore</span> In The<label>World</label></h1>
+        <h1>A visit to <span>Title</span> In <label>Bangalore</label></h1>
         <h2>Description about the event</h2>
         </div>
         <div class="banner">

@@ -105,6 +105,7 @@ $("#sliderContainer").vTiwari({
     onLike: function (item) {
 	    // Perform some logic
         likedIds.push(item.attr("id"));	
+		likedTitles.push($("#"+item.attr("id")+" font").html());	
 	categoryCount(item.attr("id"),true);
 	if(currentImage!=0){
 			var loadedImageId=imagesArr[--currentImage].id;
@@ -281,6 +282,7 @@ function openMap(category){
 	for(var i=0;i<likedIds.length;i++){
 		if(likedIds[i].substring(0, likedIds[i].length-1) === category){
 			categoryIds.push(likedIds[i]);
+			categoryTitles.push(likedTitles[i]);
 			onSuccess(); //loads the map
 			$("#map-canvas").show();
 			$("#likesPage").hide();

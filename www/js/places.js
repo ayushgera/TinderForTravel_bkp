@@ -77,6 +77,7 @@ CustomMarker.prototype.draw = function() {
 		$("#map-canvas").hide();
 		$("body").css("overflow","auto");
 		$(".banner").css("background-image","url('../www/images/"+self.args.image+"')");
+		$("#description-page h1 span").html(self.args.title);
 		$("#description-page").show();
 			
 			
@@ -151,7 +152,7 @@ function onSuccess() {
 	for(var i=0;i<categoryIds.length;i++){
 		
 		imageUrl= "main/"+categoryIds[i].substring(0, categoryIds[i].length-1)+"/"+categoryIds[i].substring(categoryIds[i].length-1, categoryIds[i].length)+".jpg";
-		new_markers[markers_length++] =new CustomMarker(new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude), map,{image: imageUrl});
+		new_markers[markers_length++] =new CustomMarker(new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude), map,{image: imageUrl, title: categoryTitles[i]});
 		//old_markers[markers_length++]=new google.maps.Marker({position: new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude),map: map});
 		/*google.maps.event.addListener(old_markers[markers_length-1], 'mousedown', function(){
 							//find image END
