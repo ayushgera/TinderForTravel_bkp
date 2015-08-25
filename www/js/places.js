@@ -47,19 +47,23 @@ CustomMarker.prototype.draw = function() {
 		div.id = self.args.image;
 		div.style.position = 'absolute';
 		div.style.cursor = 'pointer';
-		div.style.width = '40px';
-		div.style.height = '40px';
-		div.style.padding = '3px';
-		div.style.backgroundColor = 'white';
+		//div.style.width = '40px';
+		//div.style.height = '40px';
+		//div.style.padding = '3px';
+		//div.style.backgroundColor = 'white';
 		//div.style.background = 'blue';
 		//div.style.backgroundImage= "url('las_vegas.jpg')";
 		var elem = document.createElement("img");
-		elem.src = "images/"+self.args.image;
-		elem.setAttribute("height", "40px !important");
+		elem.src= "images/m3.png"
+		//elem.src = "images/"+self.args.image;
+		elem.setAttribute("height", "64px !important");
 		elem.setAttribute("width", "40px !important");
 		div.appendChild(elem);
+		var text = document.createElement("div");
+		$(text).html("<font style='padding:2px;font-weight:900;background-color:white;font-size:1em;border: 2px solid black;'>"+self.args.title+"</font>");
+
 		
-		
+		div.appendChild(text);
 		if (typeof(self.args.marker_id) !== 'undefined') {
 			div.dataset.marker_id = self.args.marker_id;
 		}
@@ -75,6 +79,8 @@ CustomMarker.prototype.draw = function() {
 			
 		$("#map-canvas").hide();
 		$("body").css("overflow","auto");
+		$(".banner").css("background-image","url('../www/images/"+self.args.image+"')");
+		$("#description-page h1 span").html(self.args.title);
 		$("#description-page").show();
 			
 			
@@ -149,7 +155,11 @@ function onSuccess() {
 	for(var i=0;i<categoryIds.length;i++){
 		
 		imageUrl= "main/"+categoryIds[i].substring(0, categoryIds[i].length-1)+"/"+categoryIds[i].substring(categoryIds[i].length-1, categoryIds[i].length)+".jpg";
-		new_markers[markers_length++] =new CustomMarker(new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude), map,{image: imageUrl});
+		new_markers[markers_length++] =new CustomMarker(new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude), 
+								map,
+								{	image: imageUrl, 
+									title: categoryTitles[i]
+								});
 		//old_markers[markers_length++]=new google.maps.Marker({position: new google.maps.LatLng(imageMap[categoryIds[i]].latitude, imageMap[categoryIds[i]].longitude),map: map});
 		/*google.maps.event.addListener(old_markers[markers_length-1], 'mousedown', function(){
 							//find image END

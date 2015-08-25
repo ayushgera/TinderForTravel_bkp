@@ -12,7 +12,13 @@ $('.actions .like, .actions .dislike').click(function(e){
 	$("#map-canvas").hide();
 	$("#likesPage").hide();
 	$("#description-page").hide();
+	
 	loadInitialImages();
+	var loadedImageId=$("#events_list li").last().attr("id");
+			$("#back-cover").css("background","url('../www/images/main/"+loadedImageId.substring(0,loadedImageId.length-1)+"/"+loadedImageId.substring(loadedImageId.length,loadedImageId.length-1)+".jpg')  no-repeat 0px 0px");
+			$("#back-cover").css("background-size","cover");
+			  $("#back-cover").css("filter","blur(5px)");
+			  $("#back-cover").css("-webkit-filter","blur(5px)");
 })();
 
 function shuffleArray(img,index,categ,prev){
@@ -85,6 +91,11 @@ $("#sliderContainer").vTiwari({
     onDislike: function (item) {
 	    // Perform some logic
 		categoryCount(item.attr("id"),false);
+	if(currentImage!=0){
+			var loadedImageId=imagesArr[--currentImage].id;
+			$("#back-cover").css("background","url('../www/images/main/"+loadedImageId.substring(0,loadedImageId.length-1)+"/"+loadedImageId.substring(loadedImageId.length,loadedImageId.length-1)+".jpg')  no-repeat 0px 0px");
+						$("#back-cover").css("background-size","cover");
+	}
 	   if(item.hasClass("lastItem")){
 			putInDatabase(categoryCountMap);
 			pageNavigation();
@@ -94,7 +105,14 @@ $("#sliderContainer").vTiwari({
     onLike: function (item) {
 	    // Perform some logic
         likedIds.push(item.attr("id"));	
+		likedTitles.push($("#"+item.attr("id")+" font").html());	
 	categoryCount(item.attr("id"),true);
+	if(currentImage!=0){
+			var loadedImageId=imagesArr[--currentImage].id;
+			$("#back-cover").css("background","url('../www/images/main/"+loadedImageId.substring(0,loadedImageId.length-1)+"/"+loadedImageId.substring(loadedImageId.length,loadedImageId.length-1)+".jpg')  no-repeat 0px 0px");
+						$("#back-cover").css("background-size","cover");
+	}
+	
 		/*
 		for(var i=imagesArr.length-1,j=i-1;i>=0 && j>=0;i--,j--){
 			if(imagesArr[i].id==item.attr("id")){
@@ -118,6 +136,7 @@ $("#sliderContainer").vTiwari({
 });
 
 function pageNavigation(){
+	$("#page1").hide();
 	$(".wrap").hide();
 	$(".actions").hide();
 	//onSuccess(); //loads the map
@@ -153,74 +172,85 @@ function sortCategoryCountMap(map){
 
 
 function loadInitialImages(){
-				if(localStorage.getItem("categoryCount") !== null){
-					reStructureImagesArr(imagesArr,JSON.parse(localStorage.getItem("categoryCount")));
-				}
-						
-                /*if(imagesArr.length===0){
-					imagesArr = [{"id":"adventure0","category":"adventure","event":"","like":"0"}, 
-                                {"id":"food0","category":"food","event":"","like":"0"},
-                                //{"id":"religion0","category":"religion","event":"","like":"0"},
-                                {"id":"music0","category":"music","event":"","like":"0"},
-                                //{"id":"sports0","category":"sports","event":"","like":"0"},
-                                {"id":"adventure1","category":"adventure","event":"","like":"0"}, 
-                                {"id":"food1","category":"food","event":"","like":"0"},
-                                //{"id":"religion1","category":"religion","event":"","like":"0"},
-                                {"id":"music1","category":"music","event":"","like":"0"},
-                                //{"id":"sports1","category":"sports","event":"","like":"0"},
-                                {"id":"adventure2","category":"adventure","event":"","like":"0"}, 
-                                {"id":"food2","category":"food","event":"","like":"0"},
-                                //{"id":"religion2","category":"religion","event":"","like":"0"},
-                                {"id":"music2","category":"music","event":"","like":"0"},
-                                //{"id":"sports2","category":"sports","event":"","like":"0"},
-                                {"id":"adventure3","category":"adventure","event":"","like":"0"}, 
-                                {"id":"food3","category":"food","event":"","like":"0"},
-                                //{"id":"religion3","category":"religion","event":"","like":"0"},
-                                {"id":"music3","category":"music","event":"","like":"0"},
-                                //{"id":"sports3","category":"sports","event":"","like":"0"},
-                                {"id":"adventure4","category":"adventure","event":"","like":"0"}, 
-                                {"id":"food4","category":"food","event":"","like":"0"},
-                                //{"id":"religion4","category":"religion","event":"","like":"0"},
-                                {"id":"music4","category":"music","event":"","like":"0"},
-                                //{"id":"sports4","category":"sports","event":"","like":"0"}
-                                ];
-				}
-                else{
-					$("ul li").remove();
-				}*/
-                var imagePath = "../www/images/main";
-                for(var i=0;i<imagesArr.length;i++){
-                                var panelClass="pane"+(i+1);
-                                var image = imagesArr[i]; 
-                                var imageId =  image.id.replace ( /[^\d]/g, '' );
-                                var img = parseInt(imageId);
-                                var imageSrc = imagePath+"/"+image.category+"/"+img+".jpg";
-                                var  li = document.createElement('li');
-                                var imageDiv= document.createElement('div');
-                                $(li).attr("id",image.id);
-                                $(imageDiv).css("background","url(\'"+imageSrc+"\') no-repeat scroll center center");
-                                $(imageDiv).addClass("img");
-                                $(imageDiv).css("background-size", "cover");
-                                var likeDiv= document.createElement('div');
-                                $(likeDiv).addClass("like");
-                                var dislikeDiv= document.createElement('div');
-                                $(dislikeDiv).addClass("dislike");
-                                li.appendChild(imageDiv);
-                                li.appendChild(likeDiv);
-                                $(li).addClass(panelClass);
-                                li.appendChild(dislikeDiv);
-                                var ul = document.getElementById("events_list");
-                                var divCont = document.getElementById("sliderContainer");
-                                var wrap = document.getElementById("mainBody");
-                                ul.appendChild(li);
-                                divCont.appendChild(ul);
-                                wrap.appendChild(divCont);  
-							
-									if(i===0){
-										$(li).addClass("lastItem");
-									}
-                }
-                
+    if(localStorage.getItem("categoryCount") !== null){
+        reStructureImagesArr(imagesArr,JSON.parse(localStorage.getItem("categoryCount")));
+    }
+    
+    /*if(imagesArr.length===0){
+     imagesArr = [{"id":"adventure0","category":"adventure","event":"","like":"0"},
+     {"id":"food0","category":"food","event":"","like":"0"},
+     //{"id":"religion0","category":"religion","event":"","like":"0"},
+     {"id":"music0","category":"music","event":"","like":"0"},
+     //{"id":"sports0","category":"sports","event":"","like":"0"},
+     {"id":"adventure1","category":"adventure","event":"","like":"0"},
+     {"id":"food1","category":"food","event":"","like":"0"},
+     //{"id":"religion1","category":"religion","event":"","like":"0"},
+     {"id":"music1","category":"music","event":"","like":"0"},
+     //{"id":"sports1","category":"sports","event":"","like":"0"},
+     {"id":"adventure2","category":"adventure","event":"","like":"0"},
+     {"id":"food2","category":"food","event":"","like":"0"},
+     //{"id":"religion2","category":"religion","event":"","like":"0"},
+     {"id":"music2","category":"music","event":"","like":"0"},
+     //{"id":"sports2","category":"sports","event":"","like":"0"},
+     {"id":"adventure3","category":"adventure","event":"","like":"0"},
+     {"id":"food3","category":"food","event":"","like":"0"},
+     //{"id":"religion3","category":"religion","event":"","like":"0"},
+     {"id":"music3","category":"music","event":"","like":"0"},
+     //{"id":"sports3","category":"sports","event":"","like":"0"},
+     {"id":"adventure4","category":"adventure","event":"","like":"0"},
+     {"id":"food4","category":"food","event":"","like":"0"},
+     //{"id":"religion4","category":"religion","event":"","like":"0"},
+     {"id":"music4","category":"music","event":"","like":"0"},
+     //{"id":"sports4","category":"sports","event":"","like":"0"}
+     ];
+     }
+     else{
+     $("ul li").remove();
+     }*/
+    var imagePath = "../www/images/main";
+    for(var i=0;i<imagesArr.length;i++){
+        var panelClass="pane"+(i+1);
+        var image = imagesArr[i];
+        var imageId =  image.id.replace ( /[^\d]/g, '' );
+        var img = parseInt(imageId);
+        var imageSrc = imagePath+"/"+image.category+"/"+img+".jpg";
+        var  li = document.createElement('li');
+        var imageDiv= document.createElement('div');
+        var titleDiv = document.createElement('div');
+        var titleFont = document.createElement('font');
+		
+        $("<font style='font-size:1em; color:#fff; font-weight:500; margin-bottom:0.5em; font-family: 'Raleway', sans-serif; padding: 4px 13px 7px; word-wrap: break-word;'>"+imagesArr[i].title+"</font>").appendTo(titleDiv);
+        $(titleDiv).css("background-color","rgba(0,0,0,0.8)");
+		$(titleDiv).css("width","100%");
+		$(titleDiv).css("padding","1em");
+		$(titleDiv).css("position","absolute");
+		$(titleDiv).css("bottom","0");
+		$(titleDiv).children().css("color","white");
+        $(li).attr("id",image.id);
+        $(imageDiv).css("background","url(\'"+imageSrc+"\') no-repeat scroll center center");
+        $(imageDiv).addClass("img");
+        $(imageDiv).css("background-size", "cover");
+        $(imageDiv).append(titleDiv);
+        var likeDiv= document.createElement('div');
+        $(likeDiv).addClass("like");
+        var dislikeDiv= document.createElement('div');
+        $(dislikeDiv).addClass("dislike");
+        li.appendChild(imageDiv);
+        li.appendChild(likeDiv);
+        $(li).addClass(panelClass);
+        li.appendChild(dislikeDiv);
+        var ul = document.getElementById("events_list");
+        var divCont = document.getElementById("sliderContainer");
+        var wrap = document.getElementById("mainBody");
+        ul.appendChild(li);
+        divCont.appendChild(ul);
+        wrap.appendChild(divCont);
+        
+        if(i===0){
+            $(li).addClass("lastItem");
+        }
+    }
+    
 }
 
 
@@ -252,6 +282,7 @@ function openMap(category){
 	for(var i=0;i<likedIds.length;i++){
 		if(likedIds[i].substring(0, likedIds[i].length-1) === category){
 			categoryIds.push(likedIds[i]);
+			categoryTitles.push(likedTitles[i]);
 			onSuccess(); //loads the map
 			$("#map-canvas").show();
 			$("#likesPage").hide();
