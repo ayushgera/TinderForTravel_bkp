@@ -12,13 +12,13 @@ body {
 
 .wrap  {
     height: 100%;
-    padding: 4.5%;
+    padding: 5%;
 }
 
 #sliderContainer {
     position: relative;
     background: #fff;
-    width: 100%;
+    width: 95%;
     height: 100%;
 }
 
@@ -38,10 +38,10 @@ body {
     top: 0;
     z-index: 2;
     left: 0;
-	padding:10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, .2);
     overflow: hidden;
     text-align: center;
+    padding: 10px 10px 10px 10px;
     background: #eee;
     font-size: 24px;
     color: #000;
@@ -111,7 +111,7 @@ body {
 }
 
 #sliderContainer .img {
-    height: 100%;
+    height: 90%;
     width: 100%;
     margin-bottom: 5px;
     position: relative;
